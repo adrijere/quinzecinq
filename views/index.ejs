@@ -7,12 +7,24 @@
 <body>
     <h1>QUINZE CINQ BOBY</h1>
     <div>
-      <form action="/ajouter/" method="post">
+      <form action="/save/" method="post">
 	<p>
-	<label for="newtodo">Hier j'ai : </label>
-	<input type="text" name="newtodo" id="newtodo" autofocus />
-	<input type="submit" value="Ajouter"/>
+	  <label for="sprint">Sprint de la semaine : </label><br/>
+	  <textarea rows="4" cols="50" name="sprint" id="sprint"><%= sprint %></textarea>
 	</p>
+	<p>
+	<label for="old">Hier j'ai : </label><br/>
+	<textarea rows="4" cols="50" name="old" id="old"><%= hier %></textarea>
+	</p>
+	<p>
+	<label for="news">Aujourd'hui j'ai : </label><br/>
+	<textarea rows="4" cols="50" name="news" id="news"><%= auj %></textarea>
+	</p>
+	<p>
+	  <label for="mood">Mood of the day : </label><br/>
+	  <textarea rows="4" cols="50" name="mood" id="mood"><%= mood %></textarea>
+	</p>
+	<input type="submit" value="Ajouter"/>
       </form>
     </div>
 </body>

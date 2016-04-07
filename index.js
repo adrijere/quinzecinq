@@ -9,13 +9,13 @@ app.use(session({secret: 'bobythetruebaandits'}))
 
     .use(function(req, res, next){
 	if (typeof(req.session.hier) == 'undefined') {
-	    req.session.hier = [];
+	    req.session.hier = "";
 	}
 	else if (typeof(req.session.auj) == 'undefined') {
-	    req.session.auj = [];
+	    req.session.auj = "";
 		}
 	else if (typeof(req.session.sprint) == 'undefined') {
-	    req.session.sprint = [];
+	    req.session.sprint = "";
 	}
 	else if (typeof(req.session.mood) == 'undefined') {
 	    req.session.mood = "";
@@ -23,23 +23,26 @@ app.use(session({secret: 'bobythetruebaandits'}))
 	next();
     })
 
-/* On affiche la todolist et le formulaire */
     .get('/', function(req, res) {
-	res.render('index.ejs', {hier: req.session.hier, auj: req.session.auj, mood: req.session.mod, sprint: req.session.sprint });
+	res.render('index.ejs', {hier: req.session.hier, auj: req.session.auj, mood: req.session.mood, sprint: req.session.sprint });
     })
 
-/* On ajoute un élément à la todolist */
-    .post('/ajouter/', urlencodedParser, function(req, res) {
-	if (req.body.newtodo != '') {
-	    req.session.auj.push(req.body.newtodo);
+    .post('/save/', urlencodedParser, function(req, res) {
+	if (req.body.old != '') {
+	    req.session.hier = req.body.old;
+	    console.log("Hier ajouté");
 	}
-	res.redirect('/');
-    })
-
-/* Supprime un élément de la todolist */
-    .get('/todo/supprimer/:id', function(req, res) {
-	if (req.params.id != '') {
-	    req.session.todolist.splice(req.params.id, 1);
+	if (req.body.news != '') {
+	    req.session.auj = req.body.news;
+	    console.log("Auj ajouté");
+	}
+	if (req.body.sprint != '') {
+	    req.session.sprint = req.body.sprint;
+	    console.log("Sprint ajouté");
+	}
+	if (req.body.mood != '') {
+	    req.session.mood = req.body.mood;
+	    console.log("Mood ajouté");
 	}
 	res.redirect('/');
     })
