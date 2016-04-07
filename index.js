@@ -52,7 +52,7 @@ app.use(session({secret: 'bobythetruebaandits'}))
     })
 
     .post('/copy/', function(req, res) {
-	req.session.copyarea = "#Sprint de la semaine :\r" + req.session.sprint + "\r#Hier j'ai : \r" + req.session.hier + "\r#Aujourd'hui j'ai : \r" + req.session.auj + "\r#Mood of the day :\r" + req.session.mood;
+	req.session.copyarea = "#Sprint de la semaine :\r" + req.session.sprint + "\r \r" + "#Hier j'ai : \r" + req.session.hier + "\r \r" + "#Aujourd'hui j'ai : \r" + req.session.auj + "\r \r" + "#Mood of the day :\r" + req.session.mood;
 	res.redirect('/');
     })
 
