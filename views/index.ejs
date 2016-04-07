@@ -3,9 +3,12 @@
 <head>
 
 </head>
-
 <body>
-    <h1>QUINZE CINQ BOBY</h1>
+  <h1>QUINZE CINQ BOBY</h1>
+  <div style="float:right; padding-right: 50px;">
+    <textarea id="copyarea" rows="10" cols="100"><%= copyarea %>
+    </textarea>
+    </div>
     <div>
       <form action="/save/" method="post">
 	<p>
@@ -24,8 +27,11 @@
 	  <label for="mood">Mood of the day : </label><br/>
 	  <textarea rows="4" cols="50" name="mood" id="mood"><%= mood %></textarea>
 	</p>
-	<input type="submit" value="Ajouter"/>
+	<input type="submit" value="Save"/><br/>
       </form>
+      <form method="post" action="/copy/">
+	<input type="submit" value="Copy"/>
+	</form>
     </div>
 </body>
 </html>

@@ -12,20 +12,23 @@ app.use(session({secret: 'bobythetruebaandits'}))
 	if (typeof(req.session.hier) == 'undefined') {
 	    req.session.hier = "";
 	}
-	else if (typeof(req.session.auj) == 'undefined') {
+	if (typeof(req.session.auj) == 'undefined') {
 	    req.session.auj = "";
 		}
-	else if (typeof(req.session.sprint) == 'undefined') {
+	if (typeof(req.session.sprint) == 'undefined') {
 	    req.session.sprint = "";
 	}
-	else if (typeof(req.session.mood) == 'undefined') {
+	if (typeof(req.session.mood) == 'undefined') {
 	    req.session.mood = "";
+	}
+	if (typeof(req.session.copyarea) == 'undefined') {
+	    req.session.copyarea = "";
 	}
 	next();
     })
 
     .get('/', function(req, res) {
-	res.render('index.ejs', {hier: req.session.hier, auj: req.session.auj, mood: req.session.mood, sprint: req.session.sprint });
+	res.render('index.ejs', {hier: req.session.hier, auj: req.session.auj, mood: req.session.mood, sprint: req.session.sprint, copyarea: req.session.copyarea});
     })
 
     .post('/save/', urlencodedParser, function(req, res) {
@@ -48,7 +51,11 @@ app.use(session({secret: 'bobythetruebaandits'}))
 	res.redirect('/');
     })
 
-/* On redirige vers la todolist si la page demandée n'est pas trouvée */
+    .post('/copy/', function(req, res) {
+	req.session.copyarea = "#Sprint de la semaine :\r" + req.session.sprint + "\r#Hier j'ai : \r" + req.session.hier + "\r#Aujourd'hui j'ai : \r" + req.session.auj + "\r#Mood of the day :\r" + req.session.mood;
+	res.redirect('/');
+    })
+
     .use(function(req, res, next){
 	res.redirect('/');
     })
@@ -56,3 +63,4 @@ app.use(session({secret: 'bobythetruebaandits'}))
 .listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
 });
+
