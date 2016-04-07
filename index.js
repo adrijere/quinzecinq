@@ -5,6 +5,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 var app = express();
 
+app.set('port', (process.env.PORT || 8080));
 app.use(session({secret: 'bobythetruebaandits'}))
 
     .use(function(req, res, next){
@@ -52,4 +53,6 @@ app.use(session({secret: 'bobythetruebaandits'}))
 	res.redirect('/');
     })
 
-    .listen(8080);
+.listen(app.get('port'), function() {
+    console.log('Node app is running on port', app.get('port'));
+});
