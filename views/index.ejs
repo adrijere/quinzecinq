@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <title>quinze cinq boby</title>
   </head>
 <body>
+    <script src="clipboard.min.js"></script>
   <h1>QUINZE CINQ BOBY</h1>
   <div style="float:right; padding-right: 50px;">
     <textarea id="copyarea" rows="30" cols="100"><%= copyarea %>
@@ -28,9 +31,16 @@
 	</p>
 	<input type="submit" value="Save"/><br/>
       </form>
-      <form method="post" action="/copy/">
-	<input type="submit" value="Copy" class="clipboard"/>
-      </form>
     </div>
+    <button class="btn" data-clipboard-action="copy" data-clipboard-target="#copyarea">Copy</button>
+    <script type="text/javascript">
+    var clipboard = new Clipboard('.btn');
+    clipboard.on('success', function(e) {
+    console.log(e);
+    });
+    clipboard.on('error', function(e) {
+    console.log(e);
+    });
+    </script>
 </body>
 </html>
