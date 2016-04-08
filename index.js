@@ -2,7 +2,6 @@ var express = require('express');
 var session = require('cookie-session');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
-var copypaste = require("copy-paste");
 var app = express();
 
 app.set('port', (process.env.PORT || 8080));
@@ -14,7 +13,7 @@ app.use(session({secret: 'bobythetruebaandits'}))
 	}
 	if (typeof(req.session.auj) == 'undefined') {
 	    req.session.auj = "";
-		}
+	}
 	if (typeof(req.session.sprint) == 'undefined') {
 	    req.session.sprint = "";
 	}
@@ -52,10 +51,7 @@ app.use(session({secret: 'bobythetruebaandits'}))
     })
 
     .post('/copy/', function(req, res) {
-	req.session.copyarea = "#Sprint de la semaine :\r" + req.session.sprint + "\r \r" + "#Hier j'ai : \r" + req.session.hier + "\r \r" + "#Aujourd'hui j'ai : \r" + req.session.auj + "\r \r" + "#Mood of the day :\r" + req.session.mood;
-	copypaste.copy('toto', function() {
-	    console.log("COPY OK !");
-	});
+	req.session.copyarea = "#Sprint de la semaine :\r" + req.session.sprint + "\r \r" + "#Hier j'ai : \r" + req.session.hier + "\r \r" + "#Aujourd'hui je vais : \r" + req.session.auj + "\r \r" + "#Mood of the day :\r" + req.session.mood;
 	res.redirect('/');
     })
 
@@ -63,7 +59,6 @@ app.use(session({secret: 'bobythetruebaandits'}))
 	res.redirect('/');
     })
 
-.listen(app.get('port'), function() {
-    console.log('Node app is running on port', app.get('port'));
-});
-
+    .listen(app.get('port'), function() {
+	console.log('Node app is running on port', app.get('port'));
+    });
