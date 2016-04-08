@@ -54,7 +54,9 @@ app.use(session({secret: 'bobythetruebaandits'}))
     .post('/copy/', function(req, res) {
 	req.session.copyarea = "#Sprint de la semaine :\n" + req.session.sprint + "\n \n" + "#Hier j'ai : \n" + req.session.hier + "\n \n" + "#Aujourd'hui je vais : \n" + req.session.auj + "\n \n" + "#Mood of the day :\n" + req.session.mood;
 	npc.copy(req.session.copyarea);
+	console.log(npc.copy(req.session.copyarea));
 	res.redirect('/');
+	return (0);
     })
 
     .use(function(req, res, next){
